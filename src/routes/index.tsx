@@ -1,24 +1,41 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Brand } from "@/components/luma/Brand";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "LUMA — Messagerie privée et lumineuse de Lumesys" },
+      {
+        name: "description",
+        content:
+          "LUMA est la messagerie de l'écosystème Lumesys : conversations privées, messages en temps réel et sécurité par défaut.",
+      },
+      { property: "og:title", content: "LUMA — Messagerie de l'écosystème Lumesys" },
+      {
+        property: "og:description",
+        content: "Conversations privées et messages en temps réel, dans une interface épurée.",
+      },
+    ],
+  }),
+  component: Landing,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Landing() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="luma-root luma-center">
+      <div className="luma-hero">
+        <Brand />
+        <h1 className="luma-title">Vos conversations, à la lumière juste.</h1>
+        <p>
+          LUMA est la messagerie de l'écosystème Lumesys : conversations privées, messages en temps
+          réel, statut de lecture et sécurité stricte dès le premier jour.
+        </p>
+        <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center" }}>
+          <Link to="/auth" className="luma-btn luma-btn-inline">
+            Ouvrir LUMA
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

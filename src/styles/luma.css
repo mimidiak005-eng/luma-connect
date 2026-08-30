@@ -1,0 +1,568 @@
+/**
+ * Nom : luma.css
+ * Chemin : src/styles/luma.css
+ * Rôle : identité visuelle et styles de l'interface LUMA (clair/sombre, responsive).
+ */
+
+:root,
+html[data-theme="dark"] {
+  --luma-bg: #0b1016;
+  --luma-panel: #111823;
+  --luma-panel-2: #16202d;
+  --luma-elevated: #1c283a;
+  --luma-border: rgba(255, 255, 255, 0.08);
+  --luma-text: #edf2f7;
+  --luma-muted: #8e9bad;
+  --luma-accent: #f5b544;
+  --luma-accent-soft: rgba(245, 181, 68, 0.16);
+  --luma-accent-2: #38bfa7;
+  --luma-bubble-me: linear-gradient(135deg, #f5b544, #e08c2f);
+  --luma-bubble-me-text: #1a1206;
+  --luma-bubble-other: #1c283a;
+  --luma-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="light"] {
+  --luma-bg: #f7f4ee;
+  --luma-panel: #ffffff;
+  --luma-panel-2: #fbf9f4;
+  --luma-elevated: #f1ece1;
+  --luma-border: rgba(20, 25, 35, 0.09);
+  --luma-text: #17202b;
+  --luma-muted: #6c7787;
+  --luma-accent: #d98b18;
+  --luma-accent-soft: rgba(217, 139, 24, 0.14);
+  --luma-accent-2: #12897a;
+  --luma-bubble-me: linear-gradient(135deg, #f0ab35, #d98b18);
+  --luma-bubble-me-text: #1a1206;
+  --luma-bubble-other: #f1ece1;
+  --luma-shadow: 0 14px 34px rgba(20, 25, 35, 0.1);
+}
+
+.luma-root {
+  min-height: 100vh;
+  background: var(--luma-bg);
+  color: var(--luma-text);
+  font-family: "Manrope", system-ui, sans-serif;
+}
+
+.luma-root *,
+.luma-root *::before,
+.luma-root *::after {
+  box-sizing: border-box;
+}
+
+.luma-title {
+  font-family: "Sora", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Marque ---------- */
+.luma-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Sora", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--luma-text);
+  text-decoration: none;
+}
+
+.luma-orb {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 32% 30%, #fff3d4, var(--luma-accent) 55%, #a9631a);
+  box-shadow: 0 0 18px var(--luma-accent-soft);
+}
+
+/* ---------- Landing / Auth ---------- */
+.luma-center {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.luma-hero {
+  max-width: 620px;
+  text-align: center;
+}
+
+.luma-hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  margin: 1.4rem 0 0.8rem;
+}
+
+.luma-hero p {
+  color: var(--luma-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0 auto 2rem;
+  max-width: 46ch;
+}
+
+.luma-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--luma-panel);
+  border: 1px solid var(--luma-border);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--luma-shadow);
+}
+
+.luma-card h2 {
+  margin: 1.2rem 0 0.35rem;
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 1.5rem;
+}
+
+.luma-card .luma-sub {
+  color: var(--luma-muted);
+  font-size: 0.9rem;
+  margin: 0 0 1.4rem;
+}
+
+.luma-tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--luma-panel-2);
+  border: 1px solid var(--luma-border);
+  border-radius: 999px;
+  padding: 0.25rem;
+  margin-bottom: 1.4rem;
+}
+
+.luma-tab {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--luma-muted);
+  padding: 0.55rem 0.5rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.luma-tab[data-active="true"] {
+  background: var(--luma-accent-soft);
+  color: var(--luma-accent);
+  font-weight: 600;
+}
+
+.luma-field {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.luma-field span {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--luma-muted);
+  margin-bottom: 0.4rem;
+}
+
+.luma-input,
+.luma-textarea {
+  width: 100%;
+  background: var(--luma-panel-2);
+  border: 1px solid var(--luma-border);
+  color: var(--luma-text);
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.luma-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.luma-input:focus,
+.luma-textarea:focus {
+  border-color: var(--luma-accent);
+}
+
+.luma-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  background: var(--luma-bubble-me);
+  color: var(--luma-bubble-me-text);
+  text-decoration: none;
+}
+
+.luma-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.luma-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--luma-border);
+  color: var(--luma-text);
+}
+
+.luma-btn-inline {
+  width: auto;
+}
+
+.luma-link {
+  background: none;
+  border: 0;
+  color: var(--luma-accent);
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+
+.luma-alert {
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.88rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--luma-border);
+  background: var(--luma-panel-2);
+}
+
+.luma-alert[data-kind="error"] {
+  border-color: rgba(226, 92, 82, 0.5);
+  color: #e2685c;
+}
+
+.luma-alert[data-kind="ok"] {
+  border-color: rgba(56, 191, 167, 0.5);
+  color: var(--luma-accent-2);
+}
+
+.luma-foot {
+  margin-top: 1.1rem;
+  font-size: 0.87rem;
+  color: var(--luma-muted);
+  text-align: center;
+}
+
+/* ---------- Application ---------- */
+.luma-app {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.luma-sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--luma-panel);
+  border-right: 1px solid var(--luma-border);
+  min-height: 0;
+}
+
+.luma-sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--luma-border);
+}
+
+.luma-icon-btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--luma-border);
+  background: var(--luma-panel-2);
+  color: var(--luma-text);
+  cursor: pointer;
+}
+
+.luma-icon-btn:hover {
+  background: var(--luma-accent-soft);
+  color: var(--luma-accent);
+}
+
+.luma-search {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--luma-border);
+}
+
+.luma-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 0.5rem;
+}
+
+.luma-empty {
+  color: var(--luma-muted);
+  font-size: 0.88rem;
+  padding: 1.2rem 0.8rem;
+  text-align: center;
+}
+
+.luma-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  padding: 0.65rem 0.7rem;
+  border-radius: 14px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.luma-row:hover {
+  background: var(--luma-panel-2);
+}
+
+.luma-row[data-active="true"] {
+  background: var(--luma-accent-soft);
+}
+
+.luma-avatar {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: var(--luma-elevated);
+  color: var(--luma-accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.luma-avatar[data-size="lg"] {
+  width: 76px;
+  height: 76px;
+  font-size: 1.5rem;
+}
+
+.luma-row-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.luma-row-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.luma-row-name {
+  font-weight: 620;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.luma-row-time {
+  font-size: 0.72rem;
+  color: var(--luma-muted);
+  flex: 0 0 auto;
+}
+
+.luma-row-preview {
+  font-size: 0.84rem;
+  color: var(--luma-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.luma-badge {
+  flex: 0 0 auto;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--luma-accent);
+  color: #1a1206;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+/* ---------- Fil de discussion ---------- */
+.luma-chat {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--luma-bg);
+}
+
+.luma-chat-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--luma-border);
+  background: var(--luma-panel);
+}
+
+.luma-messages {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.luma-msg {
+  max-width: min(72%, 560px);
+  padding: 0.6rem 0.85rem;
+  border-radius: 16px;
+  background: var(--luma-bubble-other);
+  align-self: flex-start;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.luma-msg[data-mine="true"] {
+  align-self: flex-end;
+  background: var(--luma-bubble-me);
+  color: var(--luma-bubble-me-text);
+  border-bottom-right-radius: 6px;
+}
+
+.luma-msg[data-mine="false"] {
+  border-bottom-left-radius: 6px;
+}
+
+.luma-msg-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  opacity: 0.75;
+  margin-top: 0.25rem;
+}
+
+.luma-composer {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.9rem 1.1rem;
+  border-top: 1px solid var(--luma-border);
+  background: var(--luma-panel);
+}
+
+.luma-composer .luma-input {
+  flex: 1;
+}
+
+.luma-composer .luma-btn {
+  width: auto;
+  padding: 0.7rem 1.1rem;
+}
+
+.luma-placeholder {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--luma-muted);
+  padding: 2rem;
+}
+
+/* ---------- Pages simples ---------- */
+.luma-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.luma-page-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.luma-panel {
+  background: var(--luma-panel);
+  border: 1px solid var(--luma-border);
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.luma-panel h3 {
+  margin: 0 0 1rem;
+  font-family: "Sora", system-ui, sans-serif;
+  font-size: 1.05rem;
+}
+
+.luma-setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+}
+
+.luma-setting small {
+  display: block;
+  color: var(--luma-muted);
+}
+
+.luma-profile-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Responsive ---------- */
+.luma-back {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .luma-app {
+    grid-template-columns: 1fr;
+  }
+
+  .luma-sidebar[data-hidden="true"],
+  .luma-chat[data-hidden="true"] {
+    display: none;
+  }
+
+  .luma-back {
+    display: grid;
+  }
+
+  .luma-msg {
+    max-width: 85%;
+  }
+}
