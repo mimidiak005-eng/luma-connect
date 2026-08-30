@@ -1,0 +1,28 @@
+rules_version = '2';
+
+// Nom : storage.rules
+// Chemin : storage.rules
+// Rôle : règles de sécurité Firebase Storage de LUMA (deny by default).
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Avatars : lecture par les utilisateurs connectés, écriture par le propriétaire.
+    match /avatars/{userId}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Pièces jointes de conversation : réservées aux membres (préparation).
+    match /conversations/{conversationId}/{fileName} {
+      allow read, write: if false;
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
